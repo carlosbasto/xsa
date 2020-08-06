@@ -95,7 +95,7 @@
       <descriptions defaultDescription="SALES_AMOUNT"/>
       <keyMapping columnObjectName="Join_1" columnName="SALES_AMOUNT"/>
     </attribute>
-    <attribute id="CUSTOMER_CHILDREN" order="6" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CUSTOMER_CHILDREN" order="6" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
       <descriptions defaultDescription="CUSTOMER_CHILDREN"/>
       <keyMapping columnObjectName="Join_1" columnName="CUSTOMER_CHILDREN"/>
     </attribute>
@@ -112,30 +112,30 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="221.11302679000914" y="112"/>
+      <upperLeftCorner x="221" y="112"/>
     
       <rectangleSize width="160"/>
     </shape>
   
     <shape expanded="true" modelObjectName="salesOrder" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="92" y="351.9999988079071"/>
+      <upperLeftCorner x="92" y="351"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="302" y="351.9999988079071"/>
+      <upperLeftCorner x="302" y="351"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="221.11302679000914" y="192"/>
+      <upperLeftCorner x="221" y="192"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="salesOrder" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="175.24609375"/>
+      <rectangleSize width="175"/>
     </shape>
     <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="266.7158203125"/>
+      <rectangleSize width="266"/>
     </shape>
   </shapes>
 </layout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cvcalcview" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cvcalcview">
+  <comment text="View"/>
+</descriptions>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="Synonym_2">
+    <resourceUri>Synonym_2</resourceUri>
+  </DataSource>
+  <DataSource id="db_customer">
+    <resourceUri>db_customer</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="salesOrder">
+    <viewAttributes>
+      <viewAttribute id="ORDER_ID"/>
+      <viewAttribute id="CALENDAR_ID"/>
+      <viewAttribute id="CUSTOMER_ID"/>
+      <viewAttribute id="ITEM_ID"/>
+      <viewAttribute id="ITEMS_SOLD"/>
+      <viewAttribute id="SALES_AMOUNT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Synonym_2"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="CUSTOMER_ID"/>
+      <viewAttribute id="CUSTOMER_CHILDREN"/>
+      <viewAttribute id="CUSTOMER_GENDER_ID"/>
+      <viewAttribute id="CUSTOMER_MARITAL_STATUS_ID"/>
+      <viewAttribute id="CUSTOMER_MORTGAGE_ID"/>
+      <viewAttribute id="CUSTOMER_AGE_ID"/>
+      <viewAttribute id="CUSTOMER_INCOME_ID"/>
+      <viewAttribute id="CUSTOMER_NAME"/>
+      <viewAttribute id="CUSTOMER_JOB"/>
+      <viewAttribute id="CUSTOMER_EDUCATION"/>
+      <viewAttribute id="CUSTOMER_EMAIL"/>
+      <viewAttribute id="CUSTOMER_CITY"/>
+      <viewAttribute id="CUSTOMER_TIMESTAMP"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="db_customer"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ORDER_ID"/>
+      <viewAttribute id="CALENDAR_ID"/>
+      <viewAttribute id="ITEM_ID"/>
+      <viewAttribute id="ITEMS_SOLD"/>
+      <viewAttribute id="SALES_AMOUNT"/>
+      <viewAttribute id="CUSTOMER_CHILDREN"/>
+      <viewAttribute id="CUSTOMER_NAME"/>
+      <viewAttribute hidden="true" id="JOIN$CUSTOMER_ID$CUSTOMER_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="salesOrder">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ID" source="ORDER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CALENDAR_ID" source="CALENDAR_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEM_ID" source="ITEM_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ITEMS_SOLD" source="ITEMS_SOLD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES_AMOUNT" source="SALES_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMER_ID$CUSTOMER_ID" source="CUSTOMER_ID"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_CHILDREN" source="CUSTOMER_CHILDREN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMER_NAME" source="CUSTOMER_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSTOMER_ID$CUSTOMER_ID" source="CUSTOMER_ID"/>
+    </input>
+    <joinAttribute name="JOIN$CUSTOMER_ID$CUSTOMER_ID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="ORDER_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="ORDER_ID"/>
+    </attribute>
+    <attribute id="CALENDAR_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CALENDAR_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CALENDAR_ID"/>
+    </attribute>
+    <attribute id="ITEM_ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEM_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="ITEM_ID"/>
+    </attribute>
+    <attribute id="ITEMS_SOLD" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEMS_SOLD"/>
+      <keyMapping columnObjectName="Join_1" columnName="ITEMS_SOLD"/>
+    </attribute>
+    <attribute id="SALES_AMOUNT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALES_AMOUNT"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALES_AMOUNT"/>
+    </attribute>
+    <attribute id="CUSTOMER_CHILDREN" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMER_CHILDREN"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTOMER_CHILDREN"/>
+    </attribute>
+    <attribute id="CUSTOMER_NAME" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMER_NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTOMER_NAME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="salesOrder" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="351.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="351.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="192"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="salesOrder" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="175.24609375"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="266.7158203125"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

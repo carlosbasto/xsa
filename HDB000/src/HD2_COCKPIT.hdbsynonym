@@ -1,0 +1,14 @@
+{
+  "geo.tb.st_point": {
+    "target": {
+      "object": "geo.tb.st_point",
+      "schema": "I865263"
+    }
+  },
+  "geo.tb.st_geometry": {
+    "target": {
+      "object": "geo.tb.st_geometry",
+      "schema": "I865263"
+    }
+  }
+}

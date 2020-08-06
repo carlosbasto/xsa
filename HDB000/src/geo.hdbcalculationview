@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="geo" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="geo"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="geo.tb.st_point">
+    <resourceUri>geo.tb.st_point</resourceUri>
+  </DataSource>
+  <DataSource id="geo.tb.st_geometry">
+    <resourceUri>geo.tb.st_geometry</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="COORDINATE"/>
+      <viewAttribute id="SHAPE"/>
+      <viewAttribute hidden="true" id="JOIN$COORDINATE$SHAPE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="geo.tb.st_point">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COORDINATE" source="COORDINATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COORDINATE$SHAPE" source="COORDINATE"/>
+    </input>
+    <input node="geo.tb.st_geometry">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHAPE" source="SHAPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COORDINATE$SHAPE" source="SHAPE"/>
+    </input>
+    <joinAttribute name="JOIN$COORDINATE$SHAPE">
+      <spatialJoinProperties predicate="CROSSES" predicateEvaluatesTo="false"/>
+    </joinAttribute>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="COORDINATE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COORDINATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="COORDINATE"/>
+    </attribute>
+    <attribute id="SHAPE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHAPE"/>
+      <keyMapping columnObjectName="Join_1" columnName="SHAPE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="geo.tb.st_point" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="82" y="46"/>
+      <rectangleSize width="158.5205078125"/>
+    </shape>
+    <shape modelObjectName="geo.tb.st_geometry" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="174.689453125"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
